@@ -16,7 +16,7 @@ Then create private ssh key
 
 ##Create virtual machine
 
-az vm create --image canonical:UbuntuServer:16.04.0-LTS:latest --admin-username sergey --ssh-key-value ~/.ssh/id_rsa.pub --public-ip-address-dns-name benchmark-vm1 --resource-group benchmarkResourceGroup --location westus --name benchmarkVM1
+az vm create --image canonical:UbuntuServer:16.04.0-LTS:latest --admin-username bechmark --ssh-key-value ~/.ssh/id_rsa.pub --public-ip-address-dns-name benchmark-vm1 --resource-group benchmarkResourceGroup --location westus --name benchmarkVM1
 
 ##Install Custom Script and deploy projects
 
