@@ -1,6 +1,6 @@
 #!/bin/sh
 sudo apt-get update
-sudo apt-get install wrk
+sudo apt-get install -y wrk
 
 #benchmarking
 #warm up

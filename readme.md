@@ -21,10 +21,15 @@ Then create private ssh key
 
 ##Install Custom Script and deploy projects
 
-    azure vm extension set benchmarkResourceGroup benchmarkVM1 CustomScript Microsoft.Azure.Extensions 2.0 --auto-upgrade-minor-version --public-config '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/deploy-ss.sh"],"commandToExecute": "./deploy-ss.sh"}'
     az vm extension set -g benchmark --vm-name benchmarkVM1 -n CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/deploy-ss.sh"],"commandToExecute": "./deploy-ss.sh"}'
 
 Info about script installation can found at `/var/lib/waagent/custom-script/download/0/` in benchmarkVM1 machine
+
+##Run benchmarks
+    
+    INTERNAL_IP=$(az vm list-ip-addresses --name BenchmarkVM1 | jq .[0].virtualMachine.network.privateIpAddresses[0] | sed -e 's/^"//' -e 's/"$//')
+    az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/benchmark.sh"],"commandToExecute": "./benchmark.sh ${INTERNAL_IP}"}'
+
 
 ##Destroy virtual machines
 
