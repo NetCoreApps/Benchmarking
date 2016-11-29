@@ -16,14 +16,18 @@ Then create private ssh key
 
 ##Create virtual machine
 
-az vm create --image canonical:UbuntuServer:16.04.0-LTS:latest --admin-username bechmark --ssh-key-value ~/.ssh/id_rsa.pub --public-ip-address-dns-name benchmark-vm1 --resource-group benchmarkResourceGroup --location westus --name benchmarkVM1
+   az resource group create --name benchmark --location westus
+   az vm create --image canonical:UbuntuServer:16.04.0-LTS:latest --size Standard_D3_v2 --storage-type Standard_LRS --admin-username benchmark --ssh-key-value ~/.ssh/id_rsa.pub --public-ip-address-dns-name benchmark-vm1 --resource-group benchmark --location eastus2 --name benchmarkVM1
 
 ##Install Custom Script and deploy projects
 
-azure vm extension set benchmarkResourceGroup benchmarkVM1 CustomScript Microsoft.Azure.Extensions 2.0 --auto-upgrade-minor-version --public-config '{"fileUris": ["https://gist.githubusercontent.com/xplicit/378307cda0c31f2cddca75bf97e9df54/raw/9ab567ca2ebb71174c88d770ddcc640edd4b875c/deploy-ss.sh"],"commandToExecute": "./deploy-ss.sh"}'
+   azure vm extension set benchmarkResourceGroup benchmarkVM1 CustomScript Microsoft.Azure.Extensions 2.0 --auto-upgrade-minor-version --public-config '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/deploy-ss.sh"],"commandToExecute": "./deploy-ss.sh"}'
+   az vm extension set -g benchmark --vm-name benchmarkVM1 -n CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --auto-upgrade-minor-version --public-config '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/deploy-ss.sh"],"commandToExecute": "./deploy-ss.sh"}'
 
+Info about script installation can found at `/var/lib/waagent/custom-script/download/0/` in benchmarkVM1 machine
 
 ##Destroy virtual machines
-az vm deallocate --name benchmarkVM1 --resource-group benchmarkResourceGroup
 
+   az vm delete --name benchmarkVM3 --resource-group benchmarkResourceGroup
+   az resource group delete --name benchmark
 
