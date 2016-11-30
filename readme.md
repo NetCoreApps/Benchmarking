@@ -28,8 +28,10 @@ Info about script installation can found at `/var/lib/waagent/custom-script/down
 ##Run benchmarks
     
     INTERNAL_IP=$(az vm list-ip-addresses --name BenchmarkVM1 | jq .[0].virtualMachine.network.privateIpAddresses[0] | sed -e 's/^"//' -e 's/"$//')
-    az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/benchmark.sh"],"commandToExecute": "./benchmark.sh ${INTERNAL_IP}"}'
+    #az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/benchmark.sh?v1"],"commandToExecute": "./benchmark.sh '"${INTERNAL_IP}"'"}'
 
+    az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScriptForLinux --publisher Microsoft.OSTCExtensions --version 1.5 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/benchmark.sh?v1"],"commandToExecute": "./benchmark.sh '"${INTERNAL_IP}"'"}'
+    az vm get-instance-view -n benchmarkVM2 -g benchmark | jq '.[] | select(.name == "CustomScriptForLinux").statuses[0].message'
 
 ##Destroy virtual machines
 
