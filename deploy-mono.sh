@@ -1,31 +1,21 @@
-#!/bin/bash
+#!/bin/sh
 
 SITEDOMAIN="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
-SITELOCATION="/var/www/hello-app/"
+SITELOCATION="/var/www/HttpBenchmarks/servers/Techempower.AspNet"
 HFCPORT=9000
 
-read -p "Site address or IP, e.g. www.yourdomain.com (default: $SITEDOMAIN):" USERSITE
+USERSITE=$1
 
 if [ -z "$USERSITE" ]; then
  USERSITE=$SITEDOMAIN
 fi
 
-read -p "Site location (default: $SITELOCATION):" USERLOCATION
-
-if [ -z "$USERLOCATION" ]; then
- USERLOCATION=$SITELOCATION
-fi
-
-read -p "HyperFastCGI port (default: $HFCPORT):" USERHFCPORT
-
-if [ -z "$USERHFCPORT" ]; then
- USERHFCPORT=$HFCPORT
-fi
+USERLOCATION=$SITELOCATION
+USERHFCPORT=$HFCPORT
 
 USERSITE=$(echo $USERSITE | sed -e 's/[\/&]/\\&/g')
 USERLOCATION=$(echo $USERLOCATION | sed -e 's/[\/&]/\\&/g')
 USERHFCPORT=$(echo $USERHFCPORT | sed -e 's/[\/&]/\\&/g')
-
 
 echo $USERSITE $USERLOCATION $USERHFCPORT
 
@@ -44,6 +34,10 @@ echo "Updating repositories..."
 sudo apt-get -qqq update
 echo "Installing mono..."
 sudo apt-get install -y -q mono-complete
+sudo mkdir /etc/mono/registry
+sudo chmod uog+rw /etc/mono/registry
+
+
 #installing nginx
 echo "Installing nginx..."
 sudo apt-get install -y nginx
@@ -58,6 +52,14 @@ cd hyperfastcgi
 ./autogen.sh --prefix=/usr
 ./autogen.sh --prefix=/usr && make && sudo make install
 cd ..
+
+#get App and build
+sudo mkdir -p /var/www && sudo chown -r www-data:www-data /var/www
+cd /var/www
+su -c "git clone https://github.com/xplicit/HttpBenchmarks" -s /bin/sh www-data
+cd /var/www/HttpBenchmarks
+xbuild /p:Configuration=Release src/HttpBenchmarks.sln
+
 
 #Configuring
 echo "Configure site"
