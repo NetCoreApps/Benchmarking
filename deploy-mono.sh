@@ -33,7 +33,7 @@ echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /
 echo "Updating repositories..."
 sudo apt-get -qqq update
 echo "Installing mono..."
-sudo apt-get install -y -q mono-complete
+sudo apt-get install -y -q mono-complete nuget
 sudo mkdir /etc/mono/registry
 sudo chmod uog+rw /etc/mono/registry
 
@@ -58,6 +58,7 @@ sudo mkdir -p /var/www && sudo chown -r www-data:www-data /var/www
 cd /var/www
 su -c "git clone https://github.com/xplicit/HttpBenchmarks" -s /bin/sh www-data
 cd /var/www/HttpBenchmarks
+HOME=/root nuget restore src/HttpBenchmarks.sln
 xbuild /p:Configuration=Release src/HttpBenchmarks.sln
 
 
