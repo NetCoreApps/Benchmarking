@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SITEDOMAIN="$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')"
 SITELOCATION="/var/www/HttpBenchmarks/servers/Techempower.AspNet"
@@ -55,7 +55,7 @@ cd ..
 
 #get App and build
 PREVDIR=$(pwd)
-sudo mkdir -p /var/www && sudo chown -r www-data:www-data /var/www
+sudo mkdir -p /var/www && sudo chown -R www-data:www-data /var/www
 cd /var/www
 su -c "git clone https://github.com/xplicit/HttpBenchmarks" -s /bin/sh www-data
 cd /var/www/HttpBenchmarks
