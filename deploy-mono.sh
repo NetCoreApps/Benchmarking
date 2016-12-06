@@ -54,13 +54,14 @@ cd hyperfastcgi
 cd ..
 
 #get App and build
+PREVDIR=$(pwd)
 sudo mkdir -p /var/www && sudo chown -r www-data:www-data /var/www
 cd /var/www
 su -c "git clone https://github.com/xplicit/HttpBenchmarks" -s /bin/sh www-data
 cd /var/www/HttpBenchmarks
 HOME=/root nuget restore src/HttpBenchmarks.sln
 xbuild /p:Configuration=Release src/HttpBenchmarks.sln
-
+cd $PREVDIR
 
 #Configuring
 echo "Configure site"
