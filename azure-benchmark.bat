@@ -25,7 +25,16 @@ REM Run benchmarks
 
 echo "Starting Benchmarking..."
 call azure vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScriptForLinux --publisher-name Microsoft.OSTCExtensions --version 1.5 --public-config "{""fileUris"": [""https://raw.githubusercontent.com/NetCoreApps/Benchmarking/master/benchmark.sh?v1""],""commandToExecute"": ""./benchmark.sh %INTERNAL_IP%""}"
-call azure vm get-instance-view -n benchmarkVM2 -g benchmark
+
+@echo off
+setlocal EnableDelayedExpansion
+for /f "tokens=*" %%i in ('azure vm get-instance-view -n benchmarkVM2 -g benchmark') do (
+ IF "%%i" == "---stdout---" (
+   SET DO_PRINT=1
+ ) ELSE IF "%%i" == "---errout---" (
+   SET DO_PRINT=0
+ ) ELSE IF !DO_PRINT! == 1 echo %%i
+)
 
 REM Destroy virtual machines
 
