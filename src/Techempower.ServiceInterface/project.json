@@ -1,0 +1,40 @@
+{
+  "configurations": {
+    "Debug": {
+      "buildOptions": {
+        "define": [
+          "DEBUG",
+          "TRACE"
+        ]
+      }
+    },
+    "Release": {
+      "buildOptions": {
+        "define": [
+          "TRACE"
+        ],
+        "optimize": true
+      }
+    }
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "ServiceStack.Core": "1.0.*",
+    "ServiceStack.Interfaces.Core": "1.0.*",
+    "ServiceStack.Text.Core": "1.0.*",
+    "ServiceStack.Client.Core": "1.0.*",
+    "ServiceStack.Common.Core": "1.0.*",
+    "ServiceStack.Mvc.Core": "1.0.*",
+    "ServiceStack.OrmLite.Core": "1.0.*",
+    "ServiceStack.OrmLite.Sqlite.Core": "1.0.*",
+    "ServiceStack.OrmLite.PostgreSQL.Core": "1.0.*",
+    "ServiceStack.OrmLite.SqlServer.Core": "1.0.*"
+  },
+  "frameworks": {
+     "netstandard1.6": {
+       "dependencies": {
+       }
+    }
+  },
+  "version": "1.0.0"
+}
