@@ -1,0 +1,33 @@
+{
+  "configurations": {
+    "Debug": {
+      "buildOptions": {
+        "define": ["NETSTANDARD", "DEBUG", "TRACE"]
+      }
+    },
+    "Release": {
+      "buildOptions": {
+        "define": ["NETSTANDARD", "TRACE"],
+        "optimize": true
+      }
+    }
+  },
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.1",
+    "Microsoft.AspNetCore.Mvc.Razor": "1.0.1",
+    "ServiceStack.Text": "1.0.*",
+    "ServiceStack.Interfaces": "1.0.*",
+    "ServiceStack.Client": "1.0.*",
+    "ServiceStack.Common": "1.0.*",
+    "ServiceStack": "1.0.*" 
+  },
+  "frameworks": {
+    "netstandard1.6": { 
+        "dependencies" : {
+         },
+	"bin" : { "assembly":"../../lib/netstandard1.6/ServiceStack.Mvc.dll", "pdb" : "../../lib/netstandard1.6/ServiceStack.Mvc.pdb" }
+     }
+  },
+  "version": "1.0.0"
+}
