@@ -462,7 +462,7 @@
     "System.Reflection.Emit.LightWeight/4.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sSzHHXueZ5Uh0OLpUQprhr+ZYJrLPA2Cmr4gn0wj9+FftNKXx8RIMKvO9qnjk2ebPYUjZ+F2ulGdPOsvj+MEjA=="
+      "sha512": "sha512-JEGT0Bllc1c8ndCBfso3RzzBn9u4dtohkyt2NkP5/UFNmapaqpb4aMTUxDhqn/UhelRV3M21DGXH5gNcPmj80w=="
     },
     "System.Reflection.Extensions/4.0.1": {
       "type": "package",
