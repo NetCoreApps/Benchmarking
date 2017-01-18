@@ -58,42 +58,47 @@ When benchmarking is done you can delete all benchmarking vitual machines and fr
 
     az group delete --name benchmark
 
-##Benchmark Results
+## Benchmark Results
 
-Running 5 benchmarks on Standard_F4s azure instance (4 Core, 8GB RAM). One azure instance is allocated for web application and second for running
+#### Running 5 benchmarks on Standard_F4s azure instance (4 Core, 8GB RAM). 
+One azure instance is allocated for web application and second for running
+
 `wrk -c 256 -t 8 -d 30 http://benchmarking_url` command.
 
-GET /reply/json/hello?name=world
+> GET /reply/json/hello?name=world
 
 | Benchmark |      Requests/Sec Average    |  StdDev | StdDev/Average (%) |
 |-----------|-----------------------------:|--------:|-------------------:|
 | .NET Core 1.1  |  37073                  | 271     | 0.73               |
 | mono 4.6.2 (nginx+hyperfasctcgi) |   6840|      63 | 0.93               |
 
-Running 5 benchmarks on Linux desktop
+#### Running 5 benchmarks on Linux desktop
 Intel(R) Core(TM) i5-4690K CPU @ 3.50GHz (4 Core, 16GB RAM). Web application and benchmarking program `wrk` run on the same machine.
 
-GET /reply/json/hello?name=world
+> GET /reply/json/hello?name=world
 
 | Benchmark |      Requests/Sec Average    |  StdDev | StdDev/Average (%) |
 |-----------|-----------------------------:|--------:|-------------------:|
 | .NET Core 1.1  |  56611                  |     731 | 1.29               |
 | mono 4.6.2 (nginx+hyperfasctcgi) | 12841 |     125 | 0.97               |
 
-###Previous results:
+### Baseline results:
 
-Running 5 benchmarks on Standard_F4s azure instance (4 Core, 8GB RAM).
-GET /reply/json/hello?name=world
+> Results from v4.5.4 after .NET Core support was included and before any optimizations we're added
+
+#### Running 5 benchmarks on Standard_F4s azure instance (4 Core, 8GB RAM).
+
+> GET /reply/json/hello?name=world
 
 | Benchmark |      Requests/Sec Average    |  StdDev | StdDev/Average (%) |
 |-----------|-----------------------------:|--------:|-------------------:|
 | .NET Core 1.1  |  26179                  | 74      | 0.28               |
 | mono 4.6.2 (nginx+hyperfasctcgi) |   6428|      84 | 1.30               |
 
-Running 5 benchmarks on Linux desktop
+#### Running 5 benchmarks on Linux desktop
 Intel(R) Core(TM) i5-4690K CPU @ 3.50GHz (4 Core, 16GB RAM). Web application and benchmarking program `wrk` run on the same machine.
 
-GET /reply/json/hello?name=world
+> GET /reply/json/hello?name=world
 
 | Benchmark |      Requests/Sec Average    |  StdDev | StdDev/Average (%) |
 |-----------|-----------------------------:|--------:|-------------------:|
