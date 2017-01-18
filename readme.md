@@ -82,6 +82,9 @@ GET /reply/json/hello?name=world
 
 ###Previous results:
 
+Running 5 benchmarks on Standard_F4s azure instance (4 Core, 8GB RAM).
+GET /reply/json/hello?name=world
+
 | Benchmark |      Requests/Sec Average    |  StdDev | StdDev/Average (%) |
 |-----------|-----------------------------:|--------:|-------------------:|
 | .NET Core 1.1  |  26179                  | 74      | 0.28               |
