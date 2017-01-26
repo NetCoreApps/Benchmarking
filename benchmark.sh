@@ -40,12 +40,12 @@ wrk -c 50 -t 8 -d 5 http://$1/json/reply/hello?name=world | grep Requests
 wrk -c 50 -t 8 -d 5 http://$1/json/reply/hello?name=world | grep Requests
 wrk -c 50 -t 8 -d 5 http://$1/json/reply/hello?name=world | grep Requests
 
-echo "Benchmarking .NET Core /db?format=json"
-wrk -c 256 -t 8 -d 5 http://$1/db?format=json | grep Requests
-wrk -c 256 -t 8 -d 5 http://$1/db?format=json | grep Requests
-wrk -c 256 -t 8 -d 5 http://$1/db?format=json | grep Requests
-wrk -c 256 -t 8 -d 5 http://$1/db?format=json | grep Requests
-wrk -c 256 -t 8 -d 5 http://$1/db?format=json | grep Requests
+echo "Benchmarking Mono /db?format=json"
+wrk -c 50 -t 8 -d 5 http://$1/db?format=json | grep Requests
+wrk -c 50 -t 8 -d 5 http://$1/db?format=json | grep Requests
+wrk -c 50 -t 8 -d 5 http://$1/db?format=json | grep Requests
+wrk -c 50 -t 8 -d 5 http://$1/db?format=json | grep Requests
+wrk -c 50 -t 8 -d 5 http://$1/db?format=json | grep Requests
 
 echo "Benchmarking Mono /plaintext"
 wrk -c 50 -t 8 -d 10 http://$1/plaintext > /dev/null
