@@ -15,5 +15,5 @@ echo "restored"
 cd /var/www/netcore/Benchmarking/src/WebApp
 HOME=/root dotnet build -c Release
 echo "Built"
-HOME=/root nohup dotnet run -c Release > /dev/null 2>&1 & echo $! > hello.pid
+HOME=/root nohup nice -n 20 dotnet run -c Release > /dev/null 2>&1 & echo $! > hello.pid
 echo "End"

@@ -21,7 +21,7 @@ az vm extension set -g benchmark --vm-name benchmarkVM1 -n CustomScript --publis
 #Run benchmarks
 
 echo "Starting Benchmarking..."
-az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScriptForLinux --publisher Microsoft.OSTCExtensions --version 1.5 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/profiler/benchmark.sh?v1"],"commandToExecute": "./benchmark.sh '"${INTERNAL_IP}"'"}'
+az vm extension set -g benchmark --vm-name benchmarkVM2 -n CustomScriptForLinux --publisher Microsoft.OSTCExtensions --version 1.5 --settings '{"fileUris": ["https://raw.githubusercontent.com/NetCoreApps/Benchmarking/profiler/benchmark.sh?v1"],"commandToExecute": "nice -n 20 ./benchmark.sh '"${INTERNAL_IP}"'"}'
 az vm get-instance-view -n benchmarkVM2 -g benchmark | jq '.instanceView.extensions[] | select(.name == "CustomScriptForLinux").statuses[0].message' | awk -v FS="(---stdout---|---errout---)" '{print $2}' | sed 's/\\n/\'$'\n''/g'
 #Destroy virtual machines
 
