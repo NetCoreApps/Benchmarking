@@ -19,4 +19,10 @@ wrk -c 256 -t 8 -d 5 http://$1:5051/db?format=json | grep Requests
 wrk -c 256 -t 8 -d 5 http://$1:5051/db?format=json | grep Requests
 wrk -c 256 -t 8 -d 5 http://$1:5051/db?format=json | grep Requests
 wrk -c 256 -t 8 -d 5 http://$1:5051/db?format=json | grep Requests
-
+#benchmarking plaintext
+echo "Benchmarking .NET Core /plaintext"
+wrk -c 256 -t 8 -d 5 http://$1:5051/plaintext | grep Requests
+wrk -c 256 -t 8 -d 5 http://$1:5051/plaintext | grep Requests
+wrk -c 256 -t 8 -d 5 http://$1:5051/plaintext | grep Requests
+wrk -c 256 -t 8 -d 5 http://$1:5051/plaintext | grep Requests
+wrk -c 256 -t 8 -d 5 http://$1:5051/plaintext | grep Requests
