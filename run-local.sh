@@ -8,7 +8,7 @@ cd benchmarking
 dotnet restore
 cd src/WebApp
 nohup nice -n 20 dotnet run -c Release & echo $! > run.pid
-sleep 5
+sleep 10
 cd ../..
 nice -n 19 ./benchmark-local.sh localhost
 PID=$(cat src/WebApp/run.pid)
