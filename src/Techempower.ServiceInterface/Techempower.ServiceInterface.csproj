@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>Techempower.ServiceInterface</AssemblyName>
+    <PackageId>Techempower.ServiceInterface</PackageId>
+    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.Interfaces.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.Client.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.Common.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.Mvc.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.OrmLite.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.OrmLite.Sqlite.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.OrmLite.PostgreSQL.Core" Version="1.0.*" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer.Core" Version="1.0.*" />
+  </ItemGroup>
+
+</Project>
