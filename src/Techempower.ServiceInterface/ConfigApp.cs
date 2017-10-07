@@ -5,7 +5,7 @@ using ServiceStack.Configuration;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
 using ServiceStack.Redis;
-using ServiceStack.Mvc;
+//using ServiceStack.Mvc;
 
 namespace Techempower.ServiceInterface
 {
@@ -22,7 +22,7 @@ namespace Techempower.ServiceInterface
     {
         public static void AppHost(ServiceStackHost appHost, DbProvider defaultDb = DbProvider.SqlServer)
         {
-            appHost.Plugins.Add(new RazorFormat());
+            //appHost.Plugins.Add(new RazorFormat());
 
             appHost.Container.Register<IDbConnectionFactory>(CreateDbFactory(defaultDb));
             //appHost.Container.Register<IRedisClientsManager>(c => new PooledRedisClientManager());
